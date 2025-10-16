@@ -1,9 +1,6 @@
 from collections import deque
-
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
-from collections import deque
-
 def BFS(start_pos, white_cells, N):
     step = 0
     path = deque()
