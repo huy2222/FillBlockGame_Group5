@@ -8,9 +8,6 @@ def is_valid(white_cells, N, path, pos):
         and 0 <= pos[1] < N
     )
 
-def distance(a, b):
-    return (b[1] - a[1])**2 + (b[0] - a[0])**2
-
 def calculate_cost(path, white_cells, n):
     cost = 0
     np = path[-1]
@@ -28,15 +25,14 @@ def calculate_cost(path, white_cells, n):
 def min_distance(white_cells, path, n):
     x, y = path[-1]
     min_cost = 100
-    distance = 0
+    distance = 100000
     for (wx, wy) in white_cells:
         if (wx, wy) not in path:
             cost = calculate_cost(path + [(wx, wy)], white_cells, n)
-            if cost <= min_cost:
-                if cost < min_cost:
-                    distance = 0
-                    min_cost = cost
-                distance += abs(x-wx)+abs(y - wy)
+            if abs(x-wx)+abs(y - wy) < distance:
+                if cost <= min_cost:
+                    cost = min_cost
+                    distance = abs(x-wx)+abs(y - wy)
     return distance
 
     
@@ -75,7 +71,7 @@ def beamsearch(start_pos, white_cells, N, beam_width = 500):
             break
         
         
-        new_frontier.sort(key=lambda x: (x[0]))
+        new_frontier.sort(key=lambda x: (x[0], min_distance(white_cells, x[1], N)))
         k = beam_width
         if k > len(new_frontier):
             k = len(new_frontier)
