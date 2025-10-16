@@ -16,7 +16,6 @@ def Greedy(start_pos, white_cells, N):
     while path:
         cost, state = path.get()
         step+=1
-        # print("state: ", state, "----------- cost: ", cost)
         if len(state) == len(white_cells):  # đi qua hết white_cells
             return state, step
         x, y = state[-1]
