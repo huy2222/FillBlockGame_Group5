@@ -25,19 +25,38 @@ def calculate_cost(path, white_cells, n):
     return cost
 
 
+def min_distance(white_cells, path, n):
+    x, y = path[-1]
+    min_cost = 100
+    distance = 0
+    for (wx, wy) in white_cells:
+        if (wx, wy) not in path:
+            cost = calculate_cost(path + [(wx, wy)], white_cells, n)
+            if cost <= min_cost:
+                if cost < min_cost:
+                    distance = 0
+                    min_cost = cost
+                distance += abs(x-wx)+abs(y - wy)
+    return distance
 
     
 
 
-
-def check(path, white_cells, n):
-    cost = 0
+def generate_next_state(white_cells, N, path):
     np = path[-1]
-    for i in white_cells:
-        if i not in path:
-            cost += distance(np, i)
+    next_paths = []
+    dx = [-1, 0, 1, 0]
+    dy = [0, -1, 0, 1]
+    for i in range(4):
+        x = np[0] + dx[i]
+        y = np[1] + dy[i]
+        if is_valid(white_cells, N, path, (x, y)):
+            new_path = path + [(x, y)]
+            cost = calculate_cost(new_path, white_cells, N)
+            next_paths.append((cost, new_path))
+    return next_paths
 
-    return cost
+
 
 def beamsearch(start_pos, white_cells, N, beam_width = 500):
     frontier = [[start_pos]]
