@@ -29,7 +29,7 @@ def min_distance(white_cells, path, n):
     for (wx, wy) in white_cells:
         if (wx, wy) not in path:
             cost = calculate_cost(path + [(wx, wy)], white_cells, n)
-            if abs(x-wx)+abs(y - wy) < distance:
+            if abs(x-wx)+abs(y - wy) <= distance:
                 if cost <= min_cost:
                     cost = min_cost
                     distance = abs(x-wx)+abs(y - wy)
