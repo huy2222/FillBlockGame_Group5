@@ -56,8 +56,8 @@ def sensorless_full_path_search(start_pos, white_cells, N):
     # initial belief: robot có thể bắt đầu ở bất kỳ ô trắng nào
     initial_belief = frozenset([tuple([start_pos])])
 
-    frontier = set()
-    frontier.add(initial_belief)
+    frontier = []
+    frontier.append(initial_belief)
     explored = set()
     step = 0
 
@@ -74,6 +74,6 @@ def sensorless_full_path_search(start_pos, white_cells, N):
         for a in actions:
             b_prime = apply_action_to_belief(b, a, N, set(white_cells))
             if b_prime is not None and b_prime not in explored:
-                frontier.add(b_prime)
+                frontier.append(b_prime)
 
     return None, step  # không tìm được đường đi

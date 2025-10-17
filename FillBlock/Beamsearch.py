@@ -66,6 +66,7 @@ def beamsearch(start_pos, white_cells, N, beam_width = 500):
                 return path, step
             next_states = generate_next_state(white_cells, N, path)
             new_frontier.extend(next_states)
+
         
         if not new_frontier:
             break
@@ -77,5 +78,6 @@ def beamsearch(start_pos, white_cells, N, beam_width = 500):
             k = len(new_frontier)
         # lấy top-k
         frontier = [path for cost, path in new_frontier[:k]]
+        print(len(frontier))
     
     return frontier[0], step

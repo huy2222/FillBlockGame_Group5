@@ -1,5 +1,4 @@
 from queue import PriorityQueue
-
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
 def PathCostGreedy(question, stateNow):

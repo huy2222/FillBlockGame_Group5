@@ -8,7 +8,6 @@ def PathCost(path):
         (x2, y2) = path[i+1]
         cost += abs(x1 - x2) + abs(y1 - y2)
     return cost
-
 def SimulatedAnnealing(start_pos, white_cells, level):
     step = 0
     T = 50*len(white_cells)
